@@ -1,1 +1,284 @@
-<h1>test</h1>
+<html lang='pt-br'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Cadastrar Serviço</title>
+    <link rel='stylesheet' href='/fontawesome-free/css/all.min.css' />
+    <link rel='stylesheet' href='/css/adminlte.min.css' />
+    <link
+      rel='stylesheet'
+      href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic'
+    />
+  </head>
+  <body>
+    <main>
+      <div class='content-header'>
+        <div class='container-fluid'>
+          <h1>Novo Serviço</h1>
+        </div>
+      </div>
+      <div class='content'>
+        <div class='container-fluid'>
+          <form action='/servicos' method='post'>
+            <div class='card'>
+              <div class='card-body'>
+                <fieldset>
+                  <legend>Identificação</legend>
+                  <div class='row'>
+                    <div class='col-md-4'>
+                      <div class='form-group'>
+                        <label for='nome'>Nome</label>
+                        <input
+                          type='text'
+                          value=''
+                          class='form-control'
+                          name='nome'
+                          placeholder='nome do serviço'
+                        />
+                      </div>
+                    </div>
+                    <div class='col-md-4'>
+                      <div class='form-group'>
+                        <label for='icone'>Icone</label>
+                        <select name='icone' id='icone' class='form-control'>
+                          <option value=''>Selecione o ícone do serviço</option>
+                          <option value='twf-cleaning-1'>Icone 1</option>
+                          <option value='twf-cleaning-2'>Icone 2</option>
+                          <option value='twf-cleaning-3'>Icone 3</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class='col-md-4'>
+                      <div class='form-group'>
+                        <label for='posicao'>Posição na plataforma</label>
+                        <input
+                          type='text'
+                          value=''
+                          class='form-control'
+                          name='posicao'
+                          placeholder='posição do serviço'
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <legend>Globais</legend>
+                  <div class='row'>
+                    <div class='col-md-4'>
+                      <div class='form-group'>
+                        <label for='valor_minimo'>Valor Mínimo</label>
+                        <input
+                          type='text'
+                          value=''
+                          class='form-control'
+                          name='valor_minimo'
+                          placeholder='valor minimo do serviço'
+                        />
+                      </div>
+                    </div>
+                    <div class='col-md-4'>
+                      <div class='form-group'>
+                        <label for='quantidadeHoras'>Quantidade mínima de horas</label>
+                        <input
+                          type='number'
+                          value=''
+                          class='form-control'
+                          name='quantidadeHoras'
+                          placeholder='nome do serviço'
+                        />
+                      </div>
+                    </div>
+                    <div class='col-md-4'>
+                      <div class='form-group'>
+                        <label for='porcentagem'>Porcentagem da comissão</label>
+                        <input
+                          type='text'
+                          value=''
+                          class='form-control'
+                          name='porcentagem'
+                          placeholder='porcentagem da comissão'
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <legend>Cômodos</legend>
+                  <div class='row'>
+                    <div class='col-md-6'>
+                      <div class='form-group'>
+                        <label for='valorQuarto'>Valor por quarto</label>
+                        <input
+                          type='text'
+                          value=''
+                          class='form-control'
+                          name='valorQuarto'
+                          placeholder='Valor por quarto'
+                        />
+                      </div>
+                    </div>
+                    <div class='col-md-6'>
+                      <div class='form-group'>
+                        <label for='horasQuarto'>Horas por quarto</label>
+                        <input
+                          type='number'
+                          value=''
+                          class='form-control'
+                          name='horasQuarto'
+                          placeholder='horas por quarto'
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <div class='col-md-6'>
+                      <div class='form-group'>
+                        <label for='valorSala'>Valor por sala</label>
+                        <input
+                          type='text'
+                          value=''
+                          class='form-control'
+                          name='valorSala'
+                          placeholder='Valor por Sala'
+                        />
+                      </div>
+                    </div>
+                    <div class='col-md-6'>
+                      <div class='form-group'>
+                        <label for='horasSala'>Horas por sala</label>
+                        <input
+                          type='number'
+                          value=''
+                          class='form-control'
+                          name='horasSala'
+                          placeholder='horas por Sala'
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <div class='col-md-6'>
+                      <div class='form-group'>
+                        <label for='valorBanheiro'>Valor por Banheiro</label>
+                        <input
+                          type='text'
+                          value=''
+                          class='form-control'
+                          name='valorBanheiro'
+                          placeholder='Valor por Banheiro'
+                        />
+                      </div>
+                    </div>
+                    <div class='col-md-6'>
+                      <div class='form-group'>
+                        <label for='horasBanheiro'>Horas por banheiro</label>
+                        <input
+                          type='number'
+                          value=''
+                          class='form-control'
+                          name='horasBanheiro'
+                          placeholder='horas por Banheiro'
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <div class='col-md-6'>
+                      <div class='form-group'>
+                        <label for='valorCozinha'>Valor por cozinha</label>
+                        <input
+                          type='text'
+                          value=''
+                          class='form-control'
+                          name='valorCozinha'
+                          placeholder='Valor por Cozinha'
+                        />
+                      </div>
+                    </div>
+                    <div class='col-md-6'>
+                      <div class='form-group'>
+                        <label for='horasCozinha'>Horas por cozinha</label>
+                        <input
+                          type='number'
+                          value=''
+                          class='form-control'
+                          name='horasCozinha'
+                          placeholder='horas por Cozinha'
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <div class='col-md-6'>
+                      <div class='form-group'>
+                        <label for='valorQuintal'>Valor por quintal</label>
+                        <input
+                          type='text'
+                          value=''
+                          class='form-control'
+                          name='valorQuintal'
+                          placeholder='Valor por Quintal'
+                        />
+                      </div>
+                    </div>
+                    <div class='col-md-6'>
+                      <div class='form-group'>
+                        <label for='horasQuintal'>Horas por quintal</label>
+                        <input
+                          type='number'
+                          value=''
+                          class='form-control'
+                          name='horasQuintal'
+                          placeholder='horas por Quintal'
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <div class='col-md-6'>
+                      <div class='form-group'>
+                        <label for='valorOutros'>Valor por outros tipos de
+                          comodos</label>
+                        <input
+                          type='text'
+                          value=''
+                          class='form-control'
+                          name='valorOutros'
+                          placeholder='Valor por Outros'
+                        />
+                      </div>
+                    </div>
+                    <div class='col-md-6'>
+                      <div class='form-group'>
+                        <label for='horasOutros'>Horas por outros tipos de
+                          comodos</label>
+                        <input
+                          type='number'
+                          value=''
+                          class='form-control'
+                          name='horasOutros'
+                          placeholder='horas por Outros'
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <div class='col-md-4'>
+                      <div class='form-group'>
+                        <button
+                          class='btn btn-primary'
+                          type='submit'
+                        >Salvar</button>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
