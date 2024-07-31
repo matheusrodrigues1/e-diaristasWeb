@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Render,
 } from '@nestjs/common';
 import { ServicosService } from './servicos.service';
 import { CreateServicoDto } from './dto/create-servico.dto';
@@ -16,8 +17,9 @@ export class ServicosController {
   constructor(private readonly servicosService: ServicosService) {}
 
   @Get()
+  @Render('servicos/cadastrar')
   exibirCadastrar() {
-    return 'Página de Cadastro';
+    //
   }
 
   @Post()
