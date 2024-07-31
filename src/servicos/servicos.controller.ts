@@ -1,20 +1,28 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ServicosService } from './servicos.service';
 import { CreateServicoDto } from './dto/create-servico.dto';
 import { UpdateServicoDto } from './dto/update-servico.dto';
 
-@Controller('servicos')
+@Controller('admin/servicos')
 export class ServicosController {
   constructor(private readonly servicosService: ServicosService) {}
+
+  @Get()
+  exibirCadastrar() {
+    return 'Página de Cadastro';
+  }
 
   @Post()
   create(@Body() createServicoDto: CreateServicoDto) {
     return this.servicosService.create(createServicoDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.servicosService.findAll();
   }
 
   @Get(':id')
