@@ -32,7 +32,11 @@ export class ServicosController {
   @Get('create')
   @Render('servicos/cadastrar')
   exibirCadastrar(@Request() req) {
-    return { message: req.flash('message'), oldData: req.flash('oldData') };
+    return {
+      message: req.flash('message'),
+      oldData: req.flash('oldData'),
+      alert: req.flash('alert'),
+    };
   }
 
   @Get('index')
