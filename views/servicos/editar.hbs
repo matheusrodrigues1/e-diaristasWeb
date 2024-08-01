@@ -1,0 +1,269 @@
+<main>
+  <div class='content-header'>
+    <div class='container-fluid'>
+      <h1>Editar Serviço</h1>
+    </div>
+  </div>
+  <div class='content'>
+    <div class='container-fluid'>
+      <form action='#' method='post'>
+        <div class='card'>
+          <div class='card-body'>
+            <fieldset>
+              <legend>Identificação</legend>
+              <div class='row'>
+                <div class='col-md-4'>
+                  <div class='form-group'>
+                    <label for='nome'>Nome</label>
+                    <input
+                      type='text'
+                      value='{{servico.nome}}'
+                      class='form-control'
+                      name='nome'
+                      placeholder='nome do serviço'
+                    />
+                  </div>
+                </div>
+                <div class='col-md-4'>
+                  <div class='form-group'>
+                    <label for='icone'>Icone</label>
+                    <select name='icone' id='icone' class='form-control'>
+                      <option
+                        value='{{servico.icone}}'
+                      >{{servico.icone}}</option>
+                      <option value='twf-cleaning-1'>Icone 1</option>
+                      <option value='twf-cleaning-2'>Icone 2</option>
+                      <option value='twf-cleaning-3'>Icone 3</option>
+                    </select>
+                  </div>
+                </div>
+                <div class='col-md-4'>
+                  <div class='form-group'>
+                    <label for='posicao'>Posição na plataforma</label>
+                    <input
+                      type='text'
+                      value='{{servico.posicao}}'
+                      class='form-control'
+                      name='posicao'
+                      placeholder='posição do serviço'
+                    />
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Globais</legend>
+              <div class='row'>
+                <div class='col-md-4'>
+                  <div class='form-group'>
+                    <label for='valorMinimo'>Valor Mínimo</label>
+                    <input
+                      type='text'
+                      value='{{servico.valorMinimo}}'
+                      class='form-control'
+                      name='valorMinimo'
+                      placeholder='valor minimo do serviço'
+                    />
+                  </div>
+                </div>
+                <div class='col-md-4'>
+                  <div class='form-group'>
+                    <label for='quantidadedeHoras'>Quantidade mínima de horas</label>
+                    <input
+                      type='number'
+                      value='{{servico.quantidadedeHoras}}'
+                      class='form-control'
+                      name='quantidadedeHoras'
+                      placeholder='nome do serviço'
+                    />
+                  </div>
+                </div>
+                <div class='col-md-4'>
+                  <div class='form-group'>
+                    <label for='porcentagem'>Porcentagem da comissão</label>
+                    <input
+                      type='text'
+                      value='{{servico.porcentagem}}'
+                      class='form-control'
+                      name='porcentagem'
+                      placeholder='porcentagem da comissão'
+                    />
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Cômodos</legend>
+              <div class='row'>
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='valorQuarto'>Valor por quarto</label>
+                    <input
+                      type='text'
+                      value='{{servico.valorQuarto}}'
+                      class='form-control'
+                      name='valorQuarto'
+                      placeholder='Valor por quarto'
+                    />
+                  </div>
+                </div>
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='horasQuarto'>Horas por quarto</label>
+                    <input
+                      type='number'
+                      value='{{servico.horasQuarto}}'
+                      class='form-control'
+                      name='horasQuarto'
+                      placeholder='horas por quarto'
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='valorSala'>Valor por sala</label>
+                    <input
+                      type='text'
+                      value='{{servico.valorSala}}'
+                      class='form-control'
+                      name='valorSala'
+                      placeholder='Valor por Sala'
+                    />
+                  </div>
+                </div>
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='horasSala'>Horas por sala</label>
+                    <input
+                      type='number'
+                      value='{{servico.horasSala}}'
+                      class='form-control'
+                      name='horasSala'
+                      placeholder='horas por Sala'
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='valorBanheiro'>Valor por Banheiro</label>
+                    <input
+                      type='text'
+                      value='{{servico.valorBanheiro}}'
+                      class='form-control'
+                      name='valorBanheiro'
+                      placeholder='Valor por Banheiro'
+                    />
+                  </div>
+                </div>
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='horasBanheiro'>Horas por banheiro</label>
+                    <input
+                      type='number'
+                      value='{{servico.horasBanheiro}}'
+                      class='form-control'
+                      name='horasBanheiro'
+                      placeholder='horas por Banheiro'
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='valorConzinha'>Valor por cozinha</label>
+                    <input
+                      type='text'
+                      value='{{servico.valorConzinha}}'
+                      class='form-control'
+                      name='valorConzinha'
+                      placeholder='Valor por Cozinha'
+                    />
+                  </div>
+                </div>
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='horasCozinha'>Horas por cozinha</label>
+                    <input
+                      type='number'
+                      value='{{servico.horasCozinha}}'
+                      class='form-control'
+                      name='horasCozinha'
+                      placeholder='horas por Cozinha'
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='valorQuintal'>Valor por quintal</label>
+                    <input
+                      type='text'
+                      value='{{servico.valorQuintal}}'
+                      class='form-control'
+                      name='valorQuintal'
+                      placeholder='Valor por Quintal'
+                    />
+                  </div>
+                </div>
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='horasQuintal'>Horas por quintal</label>
+                    <input
+                      type='number'
+                      value='{{servico.horasQuintal}}'
+                      class='form-control'
+                      name='horasQuintal'
+                      placeholder='horas por Quintal'
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='valorOutros'>Valor por outros tipos de comodos</label>
+                    <input
+                      type='text'
+                      value='{{servico.valorOutros}}'
+                      class='form-control'
+                      name='valorOutros'
+                      placeholder='Valor por Outros'
+                    />
+                  </div>
+                </div>
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='horasOutros'>Horas por outros tipos de comodos</label>
+                    <input
+                      type='number'
+                      value='{{servico.horasOutros}}'
+                      class='form-control'
+                      name='horasOutros'
+                      placeholder='horas por Outros'
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-md-4'>
+                  <div class='form-group'>
+                    <button
+                      class='btn btn-primary'
+                      type='submit'
+                    >Salvar</button>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

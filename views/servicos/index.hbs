@@ -1,6 +1,6 @@
 <div class='content-header'>
   <div class='cointainer-fluid'>
-    <h1>LIsta de Serviços</h1>
+    <h1>Lista de Serviços</h1>
   </div>
 </div>
 <div class='content'>
@@ -21,13 +21,16 @@
           <tr>
             <th>{{this.id}}</th>
             <td>{{this.nome}}</td>
-            <th><a href='#' class='btn btn-primary'>Atualizar</a></th>
+            <th><a
+                href='/admin/servicos/{{this.id}}/edit'
+                class='btn btn-primary'
+              >Atualizar</a></th>
           </tr>
         {{/each}}
       </tbody>
     </table>
     <div class='float-left'>
-      <a href='/admin/servicos' class='btn btn-success'>Novo Serviços</a>
+      <a href='/admin/servicos' class='btn btn-success'>Novo Serviço</a>
     </div>
   </div>
 </div>

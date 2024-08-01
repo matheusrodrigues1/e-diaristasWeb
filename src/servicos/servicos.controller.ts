@@ -24,11 +24,12 @@ export class ServicosController {
     private readonly servicosRepository: Repository<Servico>,
   ) {}
 
-  @Get()
+  @Get('create')
   @Render('servicos/cadastrar')
   exibirCadastrar() {
     //
   }
+
   @Get('index')
   @Render('servicos/index')
   async ListartServicos() {
@@ -42,9 +43,11 @@ export class ServicosController {
     await this.servicosRepository.save(createServicoDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.servicosService.findOne(+id);
+  @Get(':id/edit')
+  @Render('servicos/editar')
+  async atualizarSerivo(@Param('id') id: number) {
+    const servico = await this.servicosRepository.findOneBy({ id: id });
+    return { servico: servico };
   }
 
   @Patch(':id')
