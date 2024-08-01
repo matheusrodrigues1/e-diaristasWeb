@@ -29,6 +29,12 @@ export class ServicosController {
   exibirCadastrar() {
     //
   }
+  @Get('index')
+  @Render('servicos/index')
+  async ListartServicos() {
+    const servicos = await this.servicosRepository.find();
+    return { servicos: servicos };
+  }
 
   @Post()
   @Redirect('servicos/cadastar')

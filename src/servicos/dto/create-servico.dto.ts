@@ -1,10 +1,3 @@
-import {
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-
 export class CreateServicoDto {
   nome: string;
 
