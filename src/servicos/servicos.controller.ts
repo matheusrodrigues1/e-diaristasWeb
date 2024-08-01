@@ -15,11 +15,13 @@ import { UpdateServicoDto } from './dto/update-servico.dto';
 import { Servico } from './entities/servico.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Utils } from 'src/utils/utils';
 
 @Controller('admin/servicos')
 export class ServicosController {
   constructor(
     private readonly servicosService: ServicosService,
+    private readonly utils: Utils,
     @InjectRepository(Servico)
     private readonly servicosRepository: Repository<Servico>,
   ) {}
@@ -40,6 +42,27 @@ export class ServicosController {
   @Post()
   @Redirect('/admin/servicos/index')
   async cadastrar(@Body() createServicoDto: CreateServicoDto) {
+    createServicoDto.valorBanheiro = this.utils.formatDecimal(
+      createServicoDto.valorBanheiro,
+    );
+    createServicoDto.valorConzinha = this.utils.formatDecimal(
+      createServicoDto.valorConzinha,
+    );
+    createServicoDto.valorMinimo = this.utils.formatDecimal(
+      createServicoDto.valorMinimo,
+    );
+    createServicoDto.valorOutros = this.utils.formatDecimal(
+      createServicoDto.valorOutros,
+    );
+    createServicoDto.valorQuarto = this.utils.formatDecimal(
+      createServicoDto.valorQuarto,
+    );
+    createServicoDto.valorQuintal = this.utils.formatDecimal(
+      createServicoDto.valorQuintal,
+    );
+    createServicoDto.valorSala = this.utils.formatDecimal(
+      createServicoDto.valorSala,
+    );
     return await this.servicosRepository.save(createServicoDto);
   }
 
@@ -56,6 +79,27 @@ export class ServicosController {
     @Param('id') id: string,
     @Body() updateServicoDto: UpdateServicoDto,
   ) {
+    updateServicoDto.valorBanheiro = this.utils.formatDecimal(
+      updateServicoDto.valorBanheiro,
+    );
+    updateServicoDto.valorConzinha = this.utils.formatDecimal(
+      updateServicoDto.valorConzinha,
+    );
+    updateServicoDto.valorMinimo = this.utils.formatDecimal(
+      updateServicoDto.valorMinimo,
+    );
+    updateServicoDto.valorOutros = this.utils.formatDecimal(
+      updateServicoDto.valorOutros,
+    );
+    updateServicoDto.valorQuarto = this.utils.formatDecimal(
+      updateServicoDto.valorQuarto,
+    );
+    updateServicoDto.valorQuintal = this.utils.formatDecimal(
+      updateServicoDto.valorQuintal,
+    );
+    updateServicoDto.valorSala = this.utils.formatDecimal(
+      updateServicoDto.valorSala,
+    );
     return await this.servicosRepository.update(id, updateServicoDto);
   }
 
