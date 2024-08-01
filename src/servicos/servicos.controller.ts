@@ -38,7 +38,7 @@ export class ServicosController {
   }
 
   @Post()
-  @Redirect('/servicos/index')
+  @Redirect('/admin/servicos/index')
   async cadastrar(@Body() createServicoDto: CreateServicoDto) {
     return await this.servicosRepository.save(createServicoDto);
   }
@@ -50,8 +50,8 @@ export class ServicosController {
     return { servico: servico };
   }
 
-  @Patch(':id')
-  @Redirect('/servicos/index')
+  @Patch(':id/edit')
+  @Redirect('/admin/servicos/index')
   async update(
     @Param('id') id: string,
     @Body() updateServicoDto: UpdateServicoDto,
