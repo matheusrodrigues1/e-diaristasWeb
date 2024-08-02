@@ -19,6 +19,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Utils } from 'src/utils/utils';
 import { CreateException } from 'src/commom/filters/create-exceptions.filter';
+import { PatchException } from 'src/commom/filters/patch-exceptions.filter';
 
 @Controller('admin/servicos')
 export class ServicosController {
@@ -76,12 +77,18 @@ export class ServicosController {
 
   @Get(':id/edit')
   @Render('servicos/editar')
-  async atualizarSerivo(@Param('id') id: number) {
+  async atualizarSerivo(@Param('id') id: number, @Request() req) {
     const servico = await this.servicosRepository.findOneBy({ id: id });
-    return { servico: servico };
+    return {
+      message: req.flash('message'),
+      oldData: req.flash('oldData'),
+      alert: req.flash('alert'),
+      servico: servico,
+    };
   }
 
   @Patch(':id/edit')
+  @UseFilters(PatchException)
   @Redirect('/admin/servicos/index')
   async update(
     @Param('id') id: string,
