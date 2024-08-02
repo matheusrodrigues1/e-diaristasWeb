@@ -23,12 +23,7 @@ import { PatchException } from 'src/commom/filters/patch-exceptions.filter';
 
 @Controller('admin/servicos')
 export class ServicosController {
-  constructor(
-    private readonly servicosService: ServicosService,
-    private readonly utils: Utils,
-    @InjectRepository(Servico)
-    private readonly servicosRepository: Repository<Servico>,
-  ) {}
+  constructor(private readonly servicosService: ServicosService) {}
 
   @Get('create')
   @Render('servicos/cadastrar')
@@ -43,47 +38,24 @@ export class ServicosController {
   @Get('index')
   @Render('servicos/index')
   async ListartServicos() {
-    const servicos = await this.servicosRepository.find();
-    return { servicos: servicos };
+    return { servicos: await this.servicosService.findAll() };
   }
 
   @Post()
   @UseFilters(CreateException)
   @Redirect('/admin/servicos/index')
   async cadastrar(@Body() createServicoDto: CreateServicoDto) {
-    createServicoDto.valorBanheiro = this.utils.formatDecimal(
-      createServicoDto.valorBanheiro,
-    );
-    createServicoDto.valorConzinha = this.utils.formatDecimal(
-      createServicoDto.valorConzinha,
-    );
-    createServicoDto.valorMinimo = this.utils.formatDecimal(
-      createServicoDto.valorMinimo,
-    );
-    createServicoDto.valorOutros = this.utils.formatDecimal(
-      createServicoDto.valorOutros,
-    );
-    createServicoDto.valorQuarto = this.utils.formatDecimal(
-      createServicoDto.valorQuarto,
-    );
-    createServicoDto.valorQuintal = this.utils.formatDecimal(
-      createServicoDto.valorQuintal,
-    );
-    createServicoDto.valorSala = this.utils.formatDecimal(
-      createServicoDto.valorSala,
-    );
-    return await this.servicosRepository.save(createServicoDto);
+    return await this.servicosService.create(createServicoDto);
   }
 
   @Get(':id/edit')
   @Render('servicos/editar')
   async atualizarSerivo(@Param('id') id: number, @Request() req) {
-    const servico = await this.servicosRepository.findOneBy({ id: id });
     return {
       message: req.flash('message'),
       oldData: req.flash('oldData'),
       alert: req.flash('alert'),
-      servico: servico,
+      servico: await this.servicosService.findOne(id),
     };
   }
 
@@ -91,35 +63,9 @@ export class ServicosController {
   @UseFilters(PatchException)
   @Redirect('/admin/servicos/index')
   async update(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body() updateServicoDto: UpdateServicoDto,
   ) {
-    updateServicoDto.valorBanheiro = this.utils.formatDecimal(
-      updateServicoDto.valorBanheiro,
-    );
-    updateServicoDto.valorConzinha = this.utils.formatDecimal(
-      updateServicoDto.valorConzinha,
-    );
-    updateServicoDto.valorMinimo = this.utils.formatDecimal(
-      updateServicoDto.valorMinimo,
-    );
-    updateServicoDto.valorOutros = this.utils.formatDecimal(
-      updateServicoDto.valorOutros,
-    );
-    updateServicoDto.valorQuarto = this.utils.formatDecimal(
-      updateServicoDto.valorQuarto,
-    );
-    updateServicoDto.valorQuintal = this.utils.formatDecimal(
-      updateServicoDto.valorQuintal,
-    );
-    updateServicoDto.valorSala = this.utils.formatDecimal(
-      updateServicoDto.valorSala,
-    );
-    return await this.servicosRepository.update(id, updateServicoDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.servicosService.remove(+id);
+    return await this.servicosService.update(id, updateServicoDto);
   }
 }
