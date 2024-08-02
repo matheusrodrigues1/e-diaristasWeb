@@ -24,6 +24,12 @@ export class UsuarioPlataformaController {
     return { usuario: 'teste' };
   }
 
+  @Get('create')
+  @Render('usuarios/cadastrar')
+  async exibirCadastrarUsuario() {
+    //
+  }
+
   @Post()
   create(@Body() createUsuarioPlataformaDto: CreateUsuarioPlataformaDto) {
     return this.usuarioPlataformaService.create(createUsuarioPlataformaDto);

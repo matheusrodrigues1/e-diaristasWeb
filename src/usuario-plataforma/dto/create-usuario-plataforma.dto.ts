@@ -16,5 +16,5 @@ export class CreateUsuarioPlataformaDto {
 
   @IsNotEmpty({ message: 'Campo n pode esta vazio.' })
   @Length(8, 20, { message: 'Campo n pode esta vazio.' })
-  passwordconfirmation: string;
+  passwordConfirmation: string;
 }
