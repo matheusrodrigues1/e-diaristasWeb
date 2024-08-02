@@ -1,11 +1,28 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Render,
+} from '@nestjs/common';
 import { UsuarioPlataformaService } from './usuario-plataforma.service';
 import { CreateUsuarioPlataformaDto } from './dto/create-usuario-plataforma.dto';
 import { UpdateUsuarioPlataformaDto } from './dto/update-usuario-plataforma.dto';
 
-@Controller('usuario-plataforma')
+@Controller('admin/usuarios')
 export class UsuarioPlataformaController {
-  constructor(private readonly usuarioPlataformaService: UsuarioPlataformaService) {}
+  constructor(
+    private readonly usuarioPlataformaService: UsuarioPlataformaService,
+  ) {}
+
+  @Get('index')
+  @Render('usuarios/index')
+  async listarServicos() {
+    return { usuario: 'teste' };
+  }
 
   @Post()
   create(@Body() createUsuarioPlataformaDto: CreateUsuarioPlataformaDto) {
@@ -23,8 +40,14 @@ export class UsuarioPlataformaController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUsuarioPlataformaDto: UpdateUsuarioPlataformaDto) {
-    return this.usuarioPlataformaService.update(+id, updateUsuarioPlataformaDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateUsuarioPlataformaDto: UpdateUsuarioPlataformaDto,
+  ) {
+    return this.usuarioPlataformaService.update(
+      +id,
+      updateUsuarioPlataformaDto,
+    );
   }
 
   @Delete(':id')
