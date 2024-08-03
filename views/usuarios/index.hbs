@@ -24,8 +24,21 @@
             <th>{{this.id}}</th>
             <td>{{this.nome}}</td>
             <td>{{this.email}}</td>
-            <td><a href='#' class='btn btn-primary'>Atualizar</a>
-              <a href='#' class='btn btn-danger'>Excluir</a>
+            <td><a
+                href='/admin/usuarios/{{this.id}}/edit'
+                class='btn btn-primary'
+              >Atualizar</a>
+              <form
+                action='/admin/usuarios/{{this.id}}?_method=DELETE'
+                method='post'
+                style='display: inline'
+              >
+                <button
+                  href='/admin/usuarios/{{this.id}}'
+                  type='submit'
+                  class='btn btn-danger'
+                  onclick="return confirm('Tem certeza?')"
+                >Excluir</button></form>
             </td>
           </tr>
         {{/each}}
