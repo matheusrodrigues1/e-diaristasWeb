@@ -21,11 +21,12 @@
       <tbody>
         {{#each usuarios}}
           <tr>
-            <th>{{usuario.id}}</th>
-            <td>{{usuario.nome}}</td>
-            <td>{{usuario.email}}</td>
-            <td><a href='#' class='btn btn-primary'>Atualizar</a></td>
-            <td><a href='#' class='btn btn-primary'>Excluir</a></td>
+            <th>{{this.id}}</th>
+            <td>{{this.nome}}</td>
+            <td>{{this.email}}</td>
+            <td><a href='#' class='btn btn-primary'>Atualizar</a>
+              <a href='#' class='btn btn-danger'>Excluir</a>
+            </td>
           </tr>
         {{/each}}
       </tbody>

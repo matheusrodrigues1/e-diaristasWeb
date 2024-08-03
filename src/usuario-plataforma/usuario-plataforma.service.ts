@@ -34,8 +34,8 @@ export class UsuarioPlataformaService {
     throw new BadRequestException('Email ja cadastrado');
   }
 
-  findAll() {
-    return `This action returns all usuarioPlataforma`;
+  async findAll() {
+    return await this.usuarioRepository.find();
   }
 
   findOne(id: number) {
