@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateUsuarioPlataformaDto } from './dto/create-usuario-plataforma.dto';
 import { UpdateUsuarioPlataformaDto } from './dto/update-usuario-plataforma.dto';
 import { BeforeInsert, Repository } from 'typeorm';
@@ -38,8 +42,12 @@ export class UsuarioPlataformaService {
     return await this.usuarioRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} usuarioPlataforma`;
+  async findOne(id: number) {
+    const user = await this.usuarioRepository.findOneBy({ id: id });
+    if (!user) {
+      throw new NotFoundException();
+    }
+    return user;
   }
 
   async update(
