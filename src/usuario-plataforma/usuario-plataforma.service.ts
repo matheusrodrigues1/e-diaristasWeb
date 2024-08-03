@@ -19,7 +19,7 @@ export class UsuarioPlataformaService {
     });
 
     if (
-      createUsuarioPlataformaDto.password !=
+      createUsuarioPlataformaDto.password !==
       createUsuarioPlataformaDto.passwordConfirmation
     ) {
       throw new BadRequestException('Senha nao conferem');
@@ -42,8 +42,31 @@ export class UsuarioPlataformaService {
     return `This action returns a #${id} usuarioPlataforma`;
   }
 
-  update(id: number, updateUsuarioPlataformaDto: UpdateUsuarioPlataformaDto) {
-    return `This action updates a #${id} usuarioPlataforma`;
+  async update(
+    id: number,
+    updateUsuarioPlataformaDto: UpdateUsuarioPlataformaDto,
+  ) {
+    const user = await this.usuarioRepository.findOneBy({ id: id });
+    const userEmail = await this.usuarioRepository.findOneBy({
+      email: updateUsuarioPlataformaDto.email,
+    });
+
+    if (
+      updateUsuarioPlataformaDto.password !==
+      updateUsuarioPlataformaDto.passwordConfirmation
+    ) {
+      throw new BadRequestException('senha não confere');
+    } else if (!userEmail || userEmail.email === user.email) {
+      user.nome = updateUsuarioPlataformaDto.nome;
+      user.email = updateUsuarioPlataformaDto.email;
+      user.password = await this.setPassword(
+        updateUsuarioPlataformaDto.password,
+      );
+      await this.usuarioRepository.save(user);
+      return user;
+    } else if (userEmail.email !== user.email) {
+      throw new BadRequestException('email já cadastrado');
+    }
   }
 
   remove(id: number) {
