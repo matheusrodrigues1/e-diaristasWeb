@@ -10,6 +10,7 @@ import {
   Redirect,
   Request,
   UseFilters,
+  UseGuards,
 } from '@nestjs/common';
 import { ServicosService } from './servicos.service';
 import { CreateServicoDto } from './dto/create-servico.dto';
@@ -20,11 +21,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Utils } from 'src/utils/utils';
 import { CreateException } from 'src/commom/filters/create-exceptions.filter';
 import { PatchException } from 'src/commom/filters/patch-exceptions.filter';
+import { AuthenticatedGuard } from 'src/commom/guards/authenticated.guard';
+import { AuthException } from 'src/commom/filters/auth-exceptions.filter';
 
 @Controller('admin/servicos')
 export class ServicosController {
   constructor(private readonly servicosService: ServicosService) {}
 
+  @UseGuards(AuthenticatedGuard)
+  @UseFilters(AuthException)
   @Get('create')
   @Render('servicos/cadastrar')
   exibirCadastrar(@Request() req) {
@@ -35,19 +40,24 @@ export class ServicosController {
     };
   }
 
+  @UseGuards(AuthenticatedGuard)
+  @UseFilters(AuthException)
   @Get('index')
   @Render('servicos/index')
   async ListartServicos() {
     return { servicos: await this.servicosService.findAll() };
   }
 
-  @Post()
+  @UseGuards(AuthenticatedGuard)
   @UseFilters(CreateException)
+  @Post()
   @Redirect('/admin/servicos/index')
   async cadastrar(@Body() createServicoDto: CreateServicoDto) {
     return await this.servicosService.create(createServicoDto);
   }
 
+  @UseGuards(AuthenticatedGuard)
+  @UseFilters(CreateException)
   @Get(':id/edit')
   @Render('servicos/editar')
   async atualizarSerivo(@Param('id') id: number, @Request() req) {
@@ -59,8 +69,9 @@ export class ServicosController {
     };
   }
 
-  @Patch(':id/edit')
+  @UseGuards(AuthenticatedGuard)
   @UseFilters(PatchException)
+  @Patch(':id/edit')
   @Redirect('/admin/servicos/index')
   async update(
     @Param('id') id: number,

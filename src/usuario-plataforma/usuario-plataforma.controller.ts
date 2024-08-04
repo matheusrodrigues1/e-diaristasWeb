@@ -18,6 +18,7 @@ import { UpdateUsuarioPlataformaDto } from './dto/update-usuario-plataforma.dto'
 import { CreateException } from 'src/commom/filters/create-exceptions.filter';
 import { PatchException } from 'src/commom/filters/patch-exceptions.filter';
 import { AuthenticatedGuard } from 'src/commom/guards/authenticated.guard';
+import { AuthException } from 'src/commom/filters/auth-exceptions.filter';
 
 @Controller('admin/usuarios')
 export class UsuarioPlataformaController {
@@ -26,12 +27,15 @@ export class UsuarioPlataformaController {
   ) {}
 
   @UseGuards(AuthenticatedGuard)
+  @UseFilters(AuthException)
   @Get('index')
   @Render('usuarios/index')
   async listarUsuarios() {
     return { usuarios: await this.usuarioPlataformaService.findAll() };
   }
 
+  @UseGuards(AuthenticatedGuard)
+  @UseFilters(AuthException)
   @Get('create')
   @Render('usuarios/cadastrar')
   async exibirCadastrarUsuario(@Request() req) {
@@ -42,23 +46,16 @@ export class UsuarioPlataformaController {
     };
   }
 
-  @Post()
+  @UseGuards(AuthenticatedGuard)
   @UseFilters(CreateException)
+  @Post()
   @Redirect('/admin/usuarios/index')
   create(@Body() createUsuarioPlataformaDto: CreateUsuarioPlataformaDto) {
     return this.usuarioPlataformaService.create(createUsuarioPlataformaDto);
   }
 
-  @Get()
-  findAll() {
-    return this.usuarioPlataformaService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usuarioPlataformaService.findOne(+id);
-  }
-
+  @UseGuards(AuthenticatedGuard)
+  @UseFilters(AuthException)
   @Get(':id/edit')
   @Render('usuarios/editar')
   async editarUsuario(@Param('id') id: number, @Request() req) {
@@ -71,8 +68,9 @@ export class UsuarioPlataformaController {
     };
   }
 
-  @Patch(':id/edit')
+  @UseGuards(AuthenticatedGuard)
   @UseFilters(PatchException)
+  @Patch(':id/edit')
   @Redirect('/admin/usuarios/index')
   async update(
     @Param('id') id: number,
@@ -84,6 +82,8 @@ export class UsuarioPlataformaController {
     );
   }
 
+  @UseGuards(AuthenticatedGuard)
+  @UseFilters(AuthException)
   @Delete(':id')
   @Redirect('/admin/usuarios/index')
   remove(@Param('id') id: number) {
