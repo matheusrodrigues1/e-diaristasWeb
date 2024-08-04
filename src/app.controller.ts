@@ -1,5 +1,13 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Redirect,
+  Render,
+  UseGuards,
+} from '@nestjs/common';
 import { AppService } from './app.service';
+import { LoginGuard } from './commom/guards/login.guard';
 
 @Controller()
 export class AppController {
@@ -12,4 +20,9 @@ export class AppController {
       layout: false,
     };
   }
+
+  @UseGuards(LoginGuard)
+  @Post('admin/login')
+  @Redirect('/admin/usuarios/index')
+  doLogin() {}
 }
