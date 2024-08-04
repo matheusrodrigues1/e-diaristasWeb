@@ -28,7 +28,7 @@
           <div class='input-group mb-3'>
             <input
               type='email'
-              class='form-control'
+              class='form-control {{class}}'
               name='username'
               value=''
               placeholder='email'
@@ -42,7 +42,7 @@
           <div class='input-group mb-3'>
             <input
               type='password'
-              class='form-control'
+              class='form-control {{class}}'
               name='password'
               value=''
               placeholder='senha'
@@ -55,6 +55,8 @@
           </div>
           <div class='row'>
             <div class='col-12'>
+              <div class='text-center text-danger'><strong
+                >{{loginError}}</strong></div>
               <button class='btn btn-block btn-flat btn-primary' type='submit'>
                 <span class='fas fa-sign-in-alt'></span>
                 Entrar
